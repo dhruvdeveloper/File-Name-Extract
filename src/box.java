@@ -4,7 +4,7 @@ import java.util.List;
 
 public class box {
     public static void main(String[] args) {
-        File fileExtract = new File("***Folder Name***");
+        File fileExtract = new File("D:\\C\\Desktop\\Imp\\Projects\\Gala\\img\\Wipers");
 
         //Check that file has been existed or not.
         System.out.println(fileExtract.exists());
@@ -28,13 +28,22 @@ public class box {
         PrintWriter pw = null;
 
         try {
-            fw = new FileWriter("***File Name***", true);
+            fw = new FileWriter("D:/C/Desktop/a.txt", true);
             bw = new BufferedWriter(fw);
             pw = new PrintWriter(bw);
 
+            String data;
+            data = "product = [ \n";
             for(int i = 0; i < fileExtract.listFiles().length; i++){
-                pw.println(fileExtract.listFiles()[i].getName());
+                data = data + "\t{\n" +
+                        "\t\t\"name\": \"\",\n" +
+                        "\t\t\"image\": \"../img/Wipers" +
+                        "/" + fileExtract.listFiles()[i].getName().toString() + "\"\n" +
+                        "\t},\n";
             }
+
+            data = data + "]";
+            pw.println(data);
 
             System.out.println("Data Successfully appended into file");
             pw.flush();
